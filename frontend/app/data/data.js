@@ -1,4 +1,4 @@
-{
+export const data = [{
   "persons": [
     {
       "id": 1,
@@ -17004,4 +17004,4 @@
       "personId": 329
     }
   ]
-}
+}]
