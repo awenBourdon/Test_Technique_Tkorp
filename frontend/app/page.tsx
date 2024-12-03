@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 
-const itemsPerPage = 10;
+const itemsPerPage = 16;
 
 export default function AnimatedPage() {
   const [activeSection, setActiveSection] = useState<"persons" | "animals" | null>(null);
@@ -55,7 +55,7 @@ export default function AnimatedPage() {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="max-w-4xl mx-auto"
+        className="max-w-6xl mx-auto"
       >
         <motion.h1
           variants={itemVariants}
@@ -99,7 +99,7 @@ export default function AnimatedPage() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-6"
           >
             {paginate(data[0].persons).map((person) => (
               <motion.div
@@ -135,7 +135,7 @@ export default function AnimatedPage() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-6"
           >
             {paginate(data[0].animals).map((animal) => (
               <motion.div
