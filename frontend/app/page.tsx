@@ -71,7 +71,7 @@ export default function AnimatedPage() {
 
         {/* Affiche la pagination si un state est activé */}
         {activeSection && (
-          <div className="flex justify-center py-5">
+          <div className="flex justify-center pb-8">
             <button
               onClick={() => changePage(currentPage - 1)}
               disabled={currentPage === 1}
