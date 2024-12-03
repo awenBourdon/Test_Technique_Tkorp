@@ -79,7 +79,7 @@ export default function AnimatedPage() {
             >
               Précédent
             </button>
-            <span className="px-4 py-2">
+            <span className="px-4 py-2 hidden sm:inline-block">
               Page {currentPage} / {activeSection === "persons" ? totalPagesPersons : totalPagesAnimals}
             </span>
             <button
@@ -155,6 +155,15 @@ export default function AnimatedPage() {
                 <p>Race : {animal.breed}</p>
                 <p>Couleur : {animal.color}</p>
                 <p>Poids : {(animal.weight / 1000).toFixed(2)} kg</p>
+
+                {animal.personId ? (
+                <p>
+                Propriétaire :  
+                  <Link href={`/persons/${animal.personId}`}>
+                    {data[0].persons.find(person => person.id === animal.personId)?.firstName}
+                  </Link> </p> ) : ( <p>"N'a pas de propriétaire :("
+                </p>)}
+
                 <Link
                   href={`/animals/${animal.id}`}
                   className="text-black hover:underline mt-4 block text-center"
