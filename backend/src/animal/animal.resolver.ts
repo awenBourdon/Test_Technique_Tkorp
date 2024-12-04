@@ -23,4 +23,5 @@ export class AnimalResolver {
   async animal(@Args('id', { type: () => Int }) id: number): Promise<Animal> {
     return this.animalService.findOne(id);
   }
+  
 }

@@ -3,6 +3,7 @@ import { Rubik } from 'next/font/google';
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ApolloWrapper } from './graphql/ApolloClient'
 
 const rubik = Rubik({
   subsets: ['latin'],
@@ -21,12 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
-        className={rubik.className}
-      >
+      <body className={rubik.className}>
+      <ApolloWrapper>
         <Navbar/>
         {children}
         <Footer/>
+        </ApolloWrapper>  
       </body>
     </html>
   );

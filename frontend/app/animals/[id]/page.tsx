@@ -1,18 +1,43 @@
-import { notFound } from "next/navigation";
-import { data } from "@/app/data/data";
+'use client';
+
+import { useQuery, gql } from '@apollo/client';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-const Animal = ({ params }: { params: { id: string } }) => {
-    const animal = data[0].animals.find((animal) => animal.id === Number(params.id));
+const GET_ANIMAL = gql`
+  query GetAnimal($id: Int!) {
+    animal(id: $id) {
+      id
+      name
+      species
+      breed
+      color
+      weight
+      owner {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
 
+const Animal = ({ params }: { params: { id: string } }) => {
+  const { loading, error, data } = useQuery(GET_ANIMAL, {
+    variables: { id: Number(params.id) },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const animal = data?.animal;
 
   if (!animal) {
-    notFound();
+    notFound(); // Si l'animal n'est pas trouvé, redirige vers 404
   }
 
-
   return (
-    <div className="min-h-screen  p-8">
+    <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">
           Profil de {animal.name}
@@ -28,21 +53,21 @@ const Animal = ({ params }: { params: { id: string } }) => {
           <p>Race : {animal.breed}</p>
           <p>Couleur : {animal.color}</p>
           <p>Poids : {(animal.weight / 1000).toFixed(2)} kg</p>
-          {animal.personId ? (
-                <p>
-                  Propriétaire :{" "}
-                  <Link href={`/persons/${animal.personId}`}>
-                    {data[0].persons.find(person => person.id === animal.personId)?.firstName}
-                  </Link>
-                </p>
-              ) : (
-                <p>N&apos;a pas de propriétaire :(</p>
-              )}
+
+          {animal.owner ? (
+            <p>
+              Propriétaire :{' '}
+              <Link href={`/persons/${animal.owner.id}`}>
+                {animal.owner.firstName} {animal.owner.lastName}
+              </Link>
+            </p>
+          ) : (
+            <p>Aucun propriétaire</p>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Animal
-
+export default Animal;

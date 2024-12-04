@@ -1,9 +1,28 @@
-import { data } from "@/app/data/data";
+'use client';
+import { useQuery, gql } from '@apollo/client';
 import { notFound } from "next/navigation";
 
-const Person = ({ params }: { params: { id: string } }) => {
+const GET_PERSON = gql`
+  query GetPerson($id: Int!) {
+    person(id: $id) {
+      id
+      firstName
+      lastName
+      email
+      phoneNumber
+    }
+  }
+`;
 
-  const person = data[0].persons.find((person) => person.id === Number(params.id));
+const Person = ({ params }: { params: { id: string } }) => {
+  const { loading, error, data } = useQuery(GET_PERSON, {
+    variables: { id: Number(params.id) },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const person = data.person;
 
   if (!person) {
     notFound();
@@ -32,4 +51,4 @@ const Person = ({ params }: { params: { id: string } }) => {
   );
 }
 
-export default Person
+export default Person;

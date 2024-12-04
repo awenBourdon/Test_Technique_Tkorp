@@ -1,27 +1,60 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { data } from '../data/data';
+import { useQuery, gql } from '@apollo/client';
 import Pagination from '../components/Pagination';
 import Link from 'next/link';
+
+const GET_ANIMALS = gql`
+  query GetAnimals {
+    animals {
+      id
+      name
+      species
+      breed
+      color
+      weight
+      ownerId
+    }
+  }
+`;
 
 const itemsPerPage = 16;
 
 const AllAnimals = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const { loading, error, data } = useQuery(GET_ANIMALS);
 
-  // Pour diviser les données en pages
-  const paginate = (items: unknown[]) => {
+  const paginate = (items: any[]) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return items.slice(startIndex, endIndex);
   };
 
-  const totalPages = Math.ceil(data[0].animals.length / itemsPerPage);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const totalPages = Math.ceil(data.animals.length / itemsPerPage);
 
   const changePage = (newPage: number) => {
     setCurrentPage(newPage);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 50, damping: 25 }
+    },
   };
 
   return (
@@ -29,24 +62,25 @@ const AllAnimals = () => {
       <motion.div
         initial="hidden"
         animate="visible"
+        variants={containerVariants}
         className="max-w-6xl mx-auto"
       >
         <motion.h1 className="text-4xl font-bold text-center mb-8">Les Animaux</motion.h1>
-
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={changePage}
         />
-
         <motion.div
           initial="hidden"
           animate="visible"
+          variants={containerVariants}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
         >
-          {paginate(data[0].animals).map((animal) => (
+          {paginate(data.animals).map((animal) => (
             <motion.div
               key={animal.id}
+              variants={itemVariants}
               className="bg-white p-4 rounded-lg shadow-lg"
             >
               <img
@@ -68,11 +102,11 @@ const AllAnimals = () => {
             </motion.div>
           ))}
         </motion.div>
-
       </motion.div>
     </div>
   );
 };
 
 export default AllAnimals;
+
 
