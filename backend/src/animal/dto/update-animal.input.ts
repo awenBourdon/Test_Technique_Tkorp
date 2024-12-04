@@ -1,8 +1,35 @@
+import { InputType, Field, Int, Float, PartialType } from '@nestjs/graphql';
 import { CreateAnimalInput } from './create-animal.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { IsOptional } from '@nestjs/class-validator';
 
 @InputType()
 export class UpdateAnimalInput extends PartialType(CreateAnimalInput) {
-  @Field(() => Int)
-  id: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  name?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  dateOfBirth?: Date;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  species?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  breed?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  color?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  weight?: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  ownerId?: number;
 }

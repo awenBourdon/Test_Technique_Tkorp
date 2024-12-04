@@ -25,7 +25,7 @@ export class Person {
   @Field()
   phoneNumber: string;
 
-  @OneToMany(() => Animal, animal => animal.owner)
+  @OneToMany(() => Animal, (animal) => animal.owner)
   @Field(() => [Animal], { nullable: true })
   animals?: Animal[];
 }

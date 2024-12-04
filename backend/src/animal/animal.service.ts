@@ -3,9 +3,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Animal } from './entities/animal.entity';
 import { CreateAnimalInput } from './dto/create-animal.input';
+import { UpdateAnimalInput } from './dto/update-animal.input';
 
 @Injectable()
 export class AnimalService {
+  remove(id: number): boolean | PromiseLike<boolean> {
+    throw new Error('Method not implemented.');
+  }
+  update(
+    id: number,
+    updateAnimalInput: UpdateAnimalInput,
+  ): Animal | PromiseLike<Animal> {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     @InjectRepository(Animal)
     private animalRepository: Repository<Animal>,

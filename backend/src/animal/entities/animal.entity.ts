@@ -19,10 +19,8 @@ export class Animal {
   @Field()
   name: string;
 
-  @Column({ 
-    type: 'datetime',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+  @Column()
+  @Field()
   dateOfBirth: Date;
 
   @Column()
