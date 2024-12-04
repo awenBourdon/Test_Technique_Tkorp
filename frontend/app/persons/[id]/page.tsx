@@ -1,29 +1,34 @@
 'use client';
+import { useParams } from 'next/navigation';
 import { useQuery, gql } from '@apollo/client';
 import { notFound } from "next/navigation";
 
 const GET_PERSON = gql`
-  query GetPerson($id: Int!) {
+ query GetPerson($id: Int!) {
     person(id: $id) {
-      id
-      firstName
-      lastName
-      email
-      phoneNumber
-    }
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
   }
+ }
 `;
 
-const Person = ({ params }: { params: { id: string } }) => {
+const Person = () => {
+  const params = useParams();
+  const { id } = params;
+
   const { loading, error, data } = useQuery(GET_PERSON, {
-    variables: { id: Number(params.id) },
+    variables: { id: Number(id) },
   });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const person = data.person;
+  console.table(data); 
 
+  const person = data.person;
   if (!person) {
     notFound();
   }

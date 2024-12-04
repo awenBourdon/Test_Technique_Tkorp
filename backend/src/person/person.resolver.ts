@@ -9,7 +9,7 @@ export class PersonResolver {
 
   @Mutation(() => Person)
   async createPerson(
-    @Args('createPersonInput') CreatePersonInput: CreatePersonInput
+    @Args('createPersonInput') CreatePersonInput: CreatePersonInput,
   ): Promise<Person> {
     return this.personService.create(CreatePersonInput);
   }

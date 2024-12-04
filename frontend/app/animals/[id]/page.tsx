@@ -1,5 +1,6 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { useQuery, gql } from '@apollo/client';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -22,9 +23,12 @@ const GET_ANIMAL = gql`
   }
 `;
 
-const Animal = ({ params }: { params: { id: string } }) => {
+const Animal = () => {
+  const params = useParams();
+  const { id } = params;
+
   const { loading, error, data } = useQuery(GET_ANIMAL, {
-    variables: { id: Number(params.id) },
+    variables: { id: Number(id) },
   });
 
   if (loading) return <p>Loading...</p>;
@@ -33,7 +37,7 @@ const Animal = ({ params }: { params: { id: string } }) => {
   const animal = data?.animal;
 
   if (!animal) {
-    notFound(); // Si l'animal n'est pas trouvé, redirige vers 404
+    notFound();
   }
 
   return (
@@ -71,3 +75,4 @@ const Animal = ({ params }: { params: { id: string } }) => {
 };
 
 export default Animal;
+

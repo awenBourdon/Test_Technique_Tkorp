@@ -49,14 +49,14 @@ export default function HomePage() {
             variants={itemVariants}
             className="px-8 py-4 bg-black text-white rounded-lg shadow-md text-xl w-full"
           >
-            <Link href="/persons">Voir les Humains</Link>
+            <Link href={"/persons"}>Voir les Humains</Link>
           </motion.button>
           
           <motion.button
             variants={itemVariants}
             className="px-8 py-4 bg-black text-white rounded-lg shadow-md text-xl w-full"
           >
-            <Link href="/animals">Voir les Animaux</Link>
+            <Link href={"/animals"}>Voir les Animaux</Link>
           </motion.button>
         </motion.div>
       </motion.div>
