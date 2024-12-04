@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { data } from "@/app/data/data";
+import Link from 'next/link';
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Animal = ({ params }: { params: { id: string } }) => {
     const animal = data[0].animals.find((animal) => animal.id === Number(params.id));
 
 
@@ -27,11 +28,21 @@ const Page = ({ params }: { params: { id: string } }) => {
           <p>Race : {animal.breed}</p>
           <p>Couleur : {animal.color}</p>
           <p>Poids : {(animal.weight / 1000).toFixed(2)} kg</p>
+          {animal.personId ? (
+                <p>
+                  Propriétaire :{" "}
+                  <Link href={`/persons/${animal.personId}`}>
+                    {data[0].persons.find(person => person.id === animal.personId)?.firstName}
+                  </Link>
+                </p>
+              ) : (
+                <p>N&apos;a pas de propriétaire :(</p>
+              )}
         </div>
       </div>
     </div>
   );
 }
 
-export default Page
+export default Animal
 

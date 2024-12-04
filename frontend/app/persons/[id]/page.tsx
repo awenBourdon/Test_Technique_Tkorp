@@ -1,7 +1,7 @@
 import { data } from "@/app/data/data";
 import { notFound } from "next/navigation";
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Person = ({ params }: { params: { id: string } }) => {
 
   const person = data[0].persons.find((person) => person.id === Number(params.id));
 
@@ -32,4 +32,4 @@ const Page = ({ params }: { params: { id: string } }) => {
   );
 }
 
-export default Page
+export default Person
