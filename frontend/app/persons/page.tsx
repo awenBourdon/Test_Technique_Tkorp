@@ -1,10 +1,10 @@
 'use client';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PERSONS } from '../graphql/PersonQueries';
 import Pagination from '../components/Pagination';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const itemsPerPage = 16;
 
@@ -18,8 +18,21 @@ const AllPersons = () => {
     return items.slice(startIndex, endIndex);
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center font-mono">
+      <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
+        Chargement...
+      </div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="min-h-screen flex items-center justify-center font-mono">
+      <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
+        Erreur: {error.message}
+      </div>
+    </div>
+  );
 
   const totalPages = Math.ceil(data.persons.length / itemsPerPage);
 
@@ -27,71 +40,50 @@ const AllPersons = () => {
     setCurrentPage(newPage);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', stiffness: 50, damping: 25 }
-    },
-  };
-
   return (
-    <div className="min-h-screen p-8">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="max-w-6xl mx-auto"
-      >
-        <motion.h1 className="text-4xl font-bold text-center mb-8">Les Humains</motion.h1>
+    <div className="min-h-screen p-8 font-mono">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-6xl font-bold text-center mb-8 uppercase tracking-wider">Tout Les Humains</h1>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={changePage}
         />
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
           {paginate(data.persons).map((person) => (
-            <motion.div
+            <div
               key={person.id}
-              variants={itemVariants}
-              className="bg-white p-4 rounded-lg shadow-lg"
+              className="bg-white border-4 border-black p-4 transition-transform duration-200 hover:translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
             >
-              <img
-                src={`/placeholder.svg?text=${person.firstName}&height=200&width=300`}
-                alt={person.firstName}
-                className="w-full h-48 object-cover rounded mb-4"
-              />
-              <h2 className="text-xl font-semibold mb-2">
+              <div className="flex justify-center mb-4">
+                <div className="relative w-[200px] h-[239px]">
+                  <Image
+                    src="/person.png"
+                    alt={person.firstName}
+                    fill
+                    className="border-2 border-black"
+                  />
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold mb-2 uppercase text-center">
                 {person.firstName} {person.lastName}
               </h2>
-              <p>Email : {person.email}</p>
-              <p>Téléphone : {person.phoneNumber}</p>
+
               <Link
                 href={`/persons/${person.id}`}
-                className="text-black hover:underline mt-4 block text-center"
+                className="block mt-4 text-center bg-[#FFA500] border-2 border-black p-2 font-bold uppercase tracking-wider transition-transform duration-200 hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
               >
                 Voir Profil
               </Link>
-            </motion.div>
+
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default AllPersons;
+
+

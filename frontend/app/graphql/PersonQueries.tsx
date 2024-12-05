@@ -6,15 +6,13 @@ export const GET_PERSONS = gql`
       id
       firstName
       lastName
-      email
-      phoneNumber
     }
   }
 `;
 
 
 export const GET_PERSON_BY_ID = gql`
-  query GetPersonById($id: ID!) {
+  query GetPersonById($id: Int!) {
     person(id: $id) {
       id
       firstName
