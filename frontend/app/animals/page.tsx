@@ -1,23 +1,10 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import Pagination from '../components/Pagination';
 import Link from 'next/link';
-
-const GET_ANIMALS = gql`
-  query GetAnimals {
-    animals {
-      id
-      name
-      species
-      breed
-      color
-      weight
-      ownerId
-    }
-  }
-`;
+import { GET_ANIMALS } from '../graphql/AnimalQueries';
 
 const itemsPerPage = 16;
 

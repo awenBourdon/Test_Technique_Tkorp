@@ -1,33 +1,17 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { GET_ANIMAL_BY_ID } from '@/app/graphql/AnimalQueries';
 
-const GET_ANIMAL = gql`
-  query GetAnimal($id: Int!) {
-    animal(id: $id) {
-      id
-      name
-      species
-      breed
-      color
-      weight
-      owner {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-`;
 
 const Animal = () => {
   const params = useParams();
   const { id } = params;
 
-  const { loading, error, data } = useQuery(GET_ANIMAL, {
+  const { loading, error, data } = useQuery(GET_ANIMAL_BY_ID, {
     variables: { id: Number(id) },
   });
 

@@ -1,21 +1,10 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { GET_PERSONS } from '../graphql/PersonQueries';
 import Pagination from '../components/Pagination';
 import Link from 'next/link';
-
-const GET_PERSONS = gql`
-  query GetPersons {
-    persons {
-      id
-      firstName
-      lastName
-      email
-      phoneNumber
-    }
-  }
-`;
 
 const itemsPerPage = 16;
 

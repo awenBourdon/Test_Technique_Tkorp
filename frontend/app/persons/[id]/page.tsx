@@ -1,25 +1,15 @@
 'use client';
 import { useParams } from 'next/navigation';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { notFound } from "next/navigation";
+import { GET_PERSON_BY_ID } from '@/app/graphql/PersonQueries';
 
-const GET_PERSON = gql`
- query GetPerson($id: Int!) {
-    person(id: $id) {
-    id
-    firstName
-    lastName
-    email
-    phoneNumber
-  }
- }
-`;
 
 const Person = () => {
   const params = useParams();
   const { id } = params;
 
-  const { loading, error, data } = useQuery(GET_PERSON, {
+  const { loading, error, data } = useQuery(GET_PERSON_BY_ID, {
     variables: { id: Number(id) },
   });
 
