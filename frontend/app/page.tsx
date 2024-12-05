@@ -20,7 +20,7 @@ const HomePage = () => {
     <div className="min-h-screen  flex flex-col items-center justify-center p-8 ">
       <div className="w-full max-w-4xl border-4 border-black p-8">
         <motion.h1
-          className="text-6xl font-bold mb-12  tracking-tighter"
+          className="text-5xl sm:text-6xl font-bold mb-12  tracking-tighter "
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
