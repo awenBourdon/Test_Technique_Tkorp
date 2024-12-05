@@ -16,7 +16,7 @@ const glitchVariants = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen  flex flex-col items-center justify-center p-8 font-mono">
+    <div className="min-h-screen  flex flex-col items-center justify-center p-8 ">
       <div className="w-full max-w-4xl border-4 border-black p-8">
         <motion.h1
           className="text-6xl font-bold mb-12 uppercase tracking-tighter"

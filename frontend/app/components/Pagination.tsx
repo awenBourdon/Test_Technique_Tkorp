@@ -20,7 +20,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
   }
 
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 py-6 font-mono">
+    <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 py-6 ">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}

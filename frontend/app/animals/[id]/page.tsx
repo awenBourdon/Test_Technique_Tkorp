@@ -15,7 +15,7 @@ const Animal = () => {
   console.table(data);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center font-mono">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
         Chargement...
       </div>
@@ -23,7 +23,7 @@ const Animal = () => {
   );
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center font-mono">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
         Erreur: {error.message}
       </div>
@@ -36,7 +36,7 @@ const Animal = () => {
   }
 
   return (
-    <div className="min-h-screen p-8 font-mono">
+    <div className="min-h-screen p-8 ">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-6xl font-bold text-center mb-8 uppercase tracking-wider">
           Profil de {animal.name}

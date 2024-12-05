@@ -19,7 +19,7 @@ const AllAnimals = () => {
   };
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center font-mono">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
         Chargement...
       </div>
@@ -27,7 +27,7 @@ const AllAnimals = () => {
   );
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center font-mono">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="text-4xl font-bold uppercase tracking-wider bg-[#FFA500] border-4 border-black p-4">
         Erreur: {error.message}
       </div>
@@ -41,7 +41,7 @@ const AllAnimals = () => {
   };
 
   return (
-    <div className="min-h-screen p-8 font-mono">
+    <div className="min-h-screen p-8 ">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-6xl font-bold text-center mb-8 uppercase tracking-wider">Tous Les Animaux</h1>
         <Pagination
