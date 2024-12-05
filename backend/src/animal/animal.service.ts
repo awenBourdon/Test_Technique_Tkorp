@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Animal } from './entities/animal.entity';
@@ -7,22 +7,13 @@ import { UpdateAnimalInput } from './dto/update-animal.input';
 
 @Injectable()
 export class AnimalService {
-  remove(id: number): boolean | PromiseLike<boolean> {
-    throw new Error('Method not implemented.');
-  }
-  update(
-    id: number,
-    updateAnimalInput: UpdateAnimalInput,
-  ): Animal | PromiseLike<Animal> {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     @InjectRepository(Animal)
     private animalRepository: Repository<Animal>,
   ) {}
 
-  async create(CreateAnimalInput: CreateAnimalInput): Promise<Animal> {
-    const animal = this.animalRepository.create(CreateAnimalInput);
+  async create(createAnimalInput: CreateAnimalInput): Promise<Animal> {
+    const animal = this.animalRepository.create(createAnimalInput);
     return await this.animalRepository.save(animal);
   }
 
@@ -31,9 +22,34 @@ export class AnimalService {
   }
 
   async findOne(id: number): Promise<Animal> {
-    return await this.animalRepository.findOne({
+    const animal = await this.animalRepository.findOne({
       where: { id },
       relations: ['owner'],
     });
+
+    if (!animal) {
+      throw new NotFoundException(`Animal with ID ${id} not found`);
+    }
+
+    return animal;
+  }
+
+  async update(
+    id: number,
+    updateAnimalInput: UpdateAnimalInput,
+  ): Promise<Animal> {
+    const existingAnimal = await this.findOne(id);
+
+    const updatedAnimal = this.animalRepository.merge(
+      existingAnimal,
+      updateAnimalInput,
+    );
+    return await this.animalRepository.save(updatedAnimal as Animal);
+  }
+
+  async remove(id: number): Promise<boolean> {
+    const animal = await this.findOne(id);
+    await this.animalRepository.remove(animal);
+    return true;
   }
 }

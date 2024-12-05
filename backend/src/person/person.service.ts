@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Person } from './entities/person.entity';
@@ -7,23 +7,13 @@ import { UpdatePersonInput } from './dto/update-person.input';
 
 @Injectable()
 export class PersonService {
-  remove(id: number): boolean | PromiseLike<boolean> {
-    throw new Error('Method not implemented.');
-  }
-  
-  update(
-    id: number,
-    updatePersonInput: UpdatePersonInput,
-  ): Person | PromiseLike<Person> {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     @InjectRepository(Person)
     private personRepository: Repository<Person>,
   ) {}
 
-  async create(CreatePersonInput: CreatePersonInput): Promise<Person> {
-    const person = this.personRepository.create(CreatePersonInput);
+  async create(createPersonInput: CreatePersonInput): Promise<Person> {
+    const person = this.personRepository.create(createPersonInput);
     return await this.personRepository.save(person);
   }
 
@@ -32,9 +22,33 @@ export class PersonService {
   }
 
   async findOne(id: number): Promise<Person> {
-    return await this.personRepository.findOne({ 
-      where: { id }, 
-      relations: ['animals'] 
+    const person = await this.personRepository.findOne({
+      where: { id },
+      relations: ['animals'],
     });
+
+    if (!person) {
+      throw new NotFoundException(`Person with ID ${id} not found`);
+    }
+
+    return person;
+  }
+
+  async update(
+    id: number,
+    updatePersonInput: UpdatePersonInput,
+  ): Promise<Person> {
+    const existingPerson = await this.findOne(id);
+    const updatedPerson = this.personRepository.merge(
+      existingPerson,
+      updatePersonInput,
+    );
+    return await this.personRepository.save(updatedPerson as Person);
+  }
+
+  async remove(id: number): Promise<boolean> {
+    const person = await this.findOne(id);
+    await this.personRepository.remove(person);
+    return true;
   }
 }
