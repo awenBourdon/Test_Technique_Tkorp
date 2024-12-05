@@ -1,11 +1,13 @@
 'use client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
+// Connects to GraphQL
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
   cache: new InMemoryCache(),
 });
 
+// Allows the app to use GraphQL request
 export function ApolloWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ApolloProvider client={client}>

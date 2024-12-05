@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Rubik } from 'next/font/google';
+import { ApolloWrapper } from './graphql/ApolloClient'
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { ApolloWrapper } from './graphql/ApolloClient'
+
 
 const rubik = Rubik({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="fr">
       <body className={rubik.className}>
@@ -27,7 +29,7 @@ export default function RootLayout({
         <Navbar/>
         {children}
         <Footer/>
-        </ApolloWrapper>  
+      </ApolloWrapper>  
       </body>
     </html>
   );
