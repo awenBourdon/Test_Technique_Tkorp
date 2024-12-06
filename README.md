@@ -4,11 +4,11 @@
 
 ## Fonctionnalités du Projet
 
-- **Accès à tous les humains et animaux** : L'application permet de consulter la liste complète des personnes et des animaux enregistrés dans la base de données MySQL.
-- **Pages individuelles pour chaque humain et chaque animal** : Chaque humain et chaque animal a sa propre page avec ses informations détaillées.
+- **Accès à tous les propriétaires et animaux** : L'application permet de consulter la liste complète des personnes et des animaux enregistrés dans la base de données MySQL.
+- **Pages individuelles pour chaque propriétaireet chaque animal** : Chaque propriétaire et chaque animal a sa propre page avec ses informations détaillées.
 - **Système de pagination** : Afin de faciliter la navigation, un système de pagination est intégré pour afficher les données de manière organisée et permettre une navigation rapide.
 - **Site responsive** : L'application est entièrement responsive, garantissant une expérience utilisateur optimale sur tous les types d'appareils (ordinateurs, tablettes, mobiles).
-- **Données stockées dans MySQL** : Les informations des humains et des animaux sont stockées dans une base de données MySQL, garantissant une gestion structurée et fiable des données.
+- **Données stockées dans MySQL** : Les informations des propriétaires et des animaux sont stockées dans une base de données MySQL, garantissant une gestion structurée et fiable des données.
 - **Backend avec NestJS et API GraphQL** : Le serveur est construit avec **NestJS**, un framework Node.js robuste. Les données sont transmises au frontend via une API **GraphQL**, offrant ainsi une manière flexible et efficace de récupérer les données.
 
 

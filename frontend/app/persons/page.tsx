@@ -42,7 +42,7 @@ const AllPersons = () => {
   return (
     <div className="min-h-screen p-8 ">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-6xl font-bold text-center mb-8  tracking-wider">Tous Les Humains</h1>
+        <h1 className="text-6xl font-bold text-center mb-8  tracking-wider">Tous Les Propriétaires</h1>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
