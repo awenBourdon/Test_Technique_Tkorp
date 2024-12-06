@@ -18,7 +18,7 @@
    ```bash
    npm install -g @nestjs/cli
 
-3.   MySQL : Installez et configurez MySQL sur votre machine. Vous pouvez le télécharger depuis [ici](https://dev.mysql.com/downloads/installer/.
+3.   MySQL : Installez et configurez MySQL sur votre machine. Vous pouvez le télécharger depuis [ici](https://dev.mysql.com/downloads/installer/).
 
 Étapes pour configurer le projet
 
