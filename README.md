@@ -86,7 +86,7 @@ Dans le terminal vous n'avez plus qu'à intégrer les données en rentrant :
 
      mysql -u root -p < data-SQL.txt
 
-Pour vérifier sur MySQL si les données ont bien été rentrée :
+Pour vérifier sur MySQL si les données ont bien été rentrées :
 
      SELECT * FROM person;
      SELECT * FROM animal;
