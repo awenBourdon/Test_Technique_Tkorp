@@ -8,7 +8,6 @@
 - **MySQL** 
 - **GraphQL**
 - **Tailwind CSS**
-- **Framer Motion**
 
 ## Installation
 
