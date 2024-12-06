@@ -1,4 +1,4 @@
-# Projet Technical Test
+# Test Technique
 
 ## Technologies utilisées
 
@@ -33,39 +33,39 @@ git clone https://github.com/awenBourdon/Test_Technique_Tkorp.git
 
 #### Connectez-vous à MySQL via le terminal (exemple avec root):
 
-mysql -u root -p
+      mysql -u root -p
 
 #### Créez une nouvelle base de données (exemple avec technical_test) :
 
-CREATE DATABASE technical_test;
+      CREATE DATABASE technical_test;
 
 #### Sélectionnez la :
 
-USE technical_test;
+      USE technical_test;
 
 #### Créez la table person :
 
-CREATE TABLE person (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    lastName VARCHAR(255) NOT NULL,
-    firstName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    phoneNumber VARCHAR(50) NOT NULL
-);
+      CREATE TABLE person (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          lastName VARCHAR(255) NOT NULL,
+          firstName VARCHAR(255) NOT NULL,
+          email VARCHAR(255) NOT NULL UNIQUE,
+          phoneNumber VARCHAR(50) NOT NULL
+      );
 
 #### Créez la table animal :
 
-CREATE TABLE animal (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    dateOfBirth DATE NOT NULL,
-    species VARCHAR(255) NOT NULL,
-    breed VARCHAR(255) NOT NULL,
-    color VARCHAR(255) NOT NULL,
-    weight DECIMAL(10, 2) NOT NULL,
-    ownerId INT,
-    FOREIGN KEY (ownerId) REFERENCES person(id) ON DELETE SET NULL
-);
+      CREATE TABLE animal (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(255) NOT NULL,
+          dateOfBirth DATE NOT NULL,
+          species VARCHAR(255) NOT NULL,
+          breed VARCHAR(255) NOT NULL,
+          color VARCHAR(255) NOT NULL,
+          weight DECIMAL(10, 2) NOT NULL,
+          ownerId INT,
+          FOREIGN KEY (ownerId) REFERENCES person(id) ON DELETE SET NULL
+      );
 
 #### Quittez MySQL :
 
@@ -73,16 +73,16 @@ CREATE TABLE animal (
 
 #### Dans le terminal vous n'avez plus qu'à intégrer les données en rentrant :
 
-  mysql -u root -p < data-SQL.txt
+     mysql -u root -p < data-SQL.txt
 
 #### Pour vérifier sur MySQL si les données ont bien été rentrée :
 
-  SELECT * FROM person;
-  SELECT * FROM animal;
+     SELECT * FROM person;
+     SELECT * FROM animal;
 
-#### Paramétrage des variables d'environnement
+### Paramétrage des variables d'environnement
 
-    Dans le dossier backend, créez un fichier .env et ajoutez les informations suivantes :
+#### Dans le dossier backend, créez un fichier .env et ajoutez les informations suivantes :
 
     MYSQL_USERNAME= (votre identifiant)
     MYSQL_PASSWORD= (votre mot-de-passe)
@@ -92,13 +92,13 @@ CREATE TABLE animal (
 
 #### Démarrer le Backend (NestJS)
 
-    Allez dans le dossier backend :
+Allez dans le dossier backend :
 
-cd backend
+      cd backend
 
 ### Installez les dépendances :
 
-npm install
+      npm install
 
 #### Démarrez l'application NestJS :
 
@@ -108,17 +108,17 @@ npm install
 
 #### Démarrer le Frontend (NextJS)
 
-    Allez dans le dossier frontend :
+Allez dans le dossier frontend :
 
-cd frontend
+      cd frontend
 
 #### Installez les dépendances :
 
-npm install
+      npm install
 
 #### Créez un fichier .env dans le dossier frontend et ajoutez l'URL de votre API GraphQL :
 
-NEXT_PUBLIC_GRAPHQL_URI=http://localhost:(le PORT que vous avez défini)/graphql
+      NEXT_PUBLIC_GRAPHQL_URI=http://localhost:(le PORT que vous avez défini précédemment)/graphql
 
 #### Démarrez l'application NextJS :
 
