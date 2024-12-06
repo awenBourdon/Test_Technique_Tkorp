@@ -1,5 +1,5 @@
 /* 
-"Implements the logic for managing persons data.
+"Implements the logic for managing persons data
 */
 
 import { Injectable, NotFoundException } from '@nestjs/common';
