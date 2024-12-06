@@ -125,4 +125,6 @@ Démarrez l'application NextJS :
 
 Ouvrez votre navigateur et allez sur http://localhost:3000 pour voir le frontend.
 
-## Important : Par défaut, NextJS utilise le port 3000. Si vous modifiez ce port, n'oubliez pas de mettre à jour l'URL dans le fichier main.ts de votre backend pour qu'elle corresponde au nouveau port.
+# Important : Par défaut, NextJS utilise le port 3000. Si vous modifiez ce port, n'oubliez pas de mettre à jour l'URL dans le fichier main.ts de votre backend pour qu'elle corresponde au nouveau port.
+
+## N'hésitez pas à regarder le fichier GraphQL.Commands.txt pour voir les différentes commandes pour intéragir avec données depuis GraphQL Playground ou depuis NextJS
