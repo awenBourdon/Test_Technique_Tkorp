@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-lg font-bold  tracking-wider">
-              © 2024 Awen Bourdon - Tkorp
+              © 2024
             </p>
             <p className="text-sm mt-1">Tous droits réservés.</p>
           </div>

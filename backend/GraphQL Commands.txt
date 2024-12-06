@@ -6,9 +6,9 @@ Create a person :
 
 mutation {
   createPerson(createPersonInput: {
-    lastName: "John Doe"
-    firstName: "Doe updated"
-    email: "john@example.com"
+    lastName: "Hello"
+    firstName: "Hello"
+    email: "hello@example.com"
     phoneNumber : "555-555-555"
   }) {
     id
@@ -55,13 +55,13 @@ Create a animal :
 
 mutation {
   createAnimal(createAnimalInput: {
-  	name: "Bonjour"
-    color: "Bonjour"
-    species: "Bonjour"
-    breed: "Bonjour"
+  	name: "Hello"
+    color: "Hello"
+    species: "Hello"
+    breed: "Hello"
     weight:54
     ownerId: 55
-    dateOfBirth: "2222/12/12"
+    dateOfBirth: "2022/12/12"
     }){
     id
     name

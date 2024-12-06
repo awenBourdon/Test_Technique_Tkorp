@@ -1,3 +1,7 @@
+/* Defines a GraphQL resolver for managing animals
+with queries and mutations to the animal.service.
+*/
+
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AnimalService } from './animal.service';
 import { Animal } from './entities/animal.entity';

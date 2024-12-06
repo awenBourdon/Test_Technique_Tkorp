@@ -1,3 +1,7 @@
+/* Defines a GraphQL resolver for managing persons
+with queries and mutations to the person.service.
+*/
+
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PersonService } from './person.service';
 import { Person } from './entities/person.entity';

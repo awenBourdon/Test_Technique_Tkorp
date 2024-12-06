@@ -1,3 +1,8 @@
+/*
+DTO used to create a new person
+in GraphQL
+*/
+
 import { InputType, Field } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsString } from '@nestjs/class-validator';
 
@@ -15,6 +20,7 @@ export class CreatePersonInput {
 
   @Field()
   @IsEmail()
+  @IsNotEmpty()
   email: string;
 
   @Field()

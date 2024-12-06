@@ -1,10 +1,14 @@
+/*
+DTO used to update animal
+in GraphQL
+*/
+
 import { InputType, Field, Int, Float, PartialType } from '@nestjs/graphql';
 import { CreateAnimalInput } from './create-animal.input';
 import { IsOptional } from '@nestjs/class-validator';
 
 @InputType()
 export class UpdateAnimalInput extends PartialType(CreateAnimalInput) {
-
   @Field({ nullable: true })
   @IsOptional()
   name?: string;
@@ -25,11 +29,11 @@ export class UpdateAnimalInput extends PartialType(CreateAnimalInput) {
   @IsOptional()
   color?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   weight?: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   ownerId?: number;
 }

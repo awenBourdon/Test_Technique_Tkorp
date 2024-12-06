@@ -13,6 +13,7 @@ import {
 } from 'typeorm';
 import { Field, Int, Float, ObjectType } from '@nestjs/graphql';
 import { Person } from '../../person/entities/person.entity';
+import { IsNotEmpty, MaxDate, Min } from '@nestjs/class-validator';
 
 // @Entity marks as a database table managed by TypeORM
 @Entity()
@@ -23,38 +24,46 @@ export class Animal {
   @Field(() => Int)
   id: number;
 
-  // @Column maps a class property to a column in the database
   @Column()
-  // @Field exposes a class property as a field in GraphQL
   @Field()
+  @IsNotEmpty()
   name: string;
 
   @Column()
   @Field()
+  @IsNotEmpty()
+  @MaxDate(new Date())
   dateOfBirth: Date;
 
   @Column()
   @Field()
+  @IsNotEmpty()
   species: string;
 
   @Column()
   @Field()
+  @IsNotEmpty()
   breed: string;
 
   @Column()
   @Field()
+  @IsNotEmpty()
   color: string;
 
   @Column('float')
   @Field(() => Float)
+  @Min(0)
+  @IsNotEmpty()
   weight: number;
 
   @Column()
   @Field(() => Int)
+  @IsNotEmpty()
   ownerId: number;
 
   @ManyToOne(() => Person, (person) => person.animals)
   @JoinColumn({ name: 'ownerId' })
   @Field(() => Person)
+  @IsNotEmpty()
   owner: Person;
 }

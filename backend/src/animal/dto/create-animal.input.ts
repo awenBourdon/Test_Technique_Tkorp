@@ -1,9 +1,15 @@
+/*
+DTO used to create a new animal
+in GraphQL
+*/
+
 import { InputType, Field, Int, Float } from '@nestjs/graphql';
 import {
   IsNotEmpty,
   IsString,
   IsNumber,
   IsDate,
+  MaxDate,
 } from '@nestjs/class-validator';
 
 @InputType()
@@ -16,6 +22,7 @@ export class CreateAnimalInput {
   @Field()
   @IsNotEmpty()
   @IsDate()
+  @MaxDate(new Date())
   dateOfBirth: Date;
 
   @Field()
