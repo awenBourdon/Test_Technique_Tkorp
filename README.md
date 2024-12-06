@@ -1,42 +1,4 @@
 
-    <style>
-        * {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        pre {
-            background-color: #282c34;
-            color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-        }
-        code {
-            font-size: 1.2em;
-        }
-        ul {
-            list-style-type: none;
-        }
-        li {
-            margin: 10px 0;
-        }
-        .important {
-            font-weight: bold;
-            color: #d9534f;
-        }
-        .tech-stack {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
     <h1>Guide d'installation et de configuration du projet</h1>
 
     <h2>Technologies utilisées</h2>
