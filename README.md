@@ -140,3 +140,58 @@ Ouvrez votre navigateur et allez sur http://localhost:3000 pour voir le frontend
 # Important : Par défaut, NextJS utilise le port 3000. Si vous modifiez ce port, n'oubliez pas de mettre à jour l'URL dans le fichier main.ts de votre backend pour qu'elle corresponde au nouveau port.
 
 ## N'hésitez pas à regarder le fichier GraphQL.Commands.txt pour voir les différentes commandes pour intéragir avec données depuis GraphQL Playground ou depuis NextJS
+
+# Réponses aux questions :
+
+- **Quel animal est le plus vieux ?** Rocky (Id 934)
+
+      SELECT * FROM animal ORDER BY dateOfBirth ASC LIMIT 1;
+
+- **Quelle espèce est la mieux représentée ? (Le plus d’entités de cette espèce)** Bird
+
+      SELECT species, COUNT(*) AS count
+      FROM animal
+      GROUP BY species
+      ORDER BY count DESC
+      LIMIT 1;
+
+- **Qui possède le plus d’animaux ?** Sophia Brown (Id 18)
+
+      SELECT p.id AS ownerId, p.firstName, p.lastName, COUNT(*) AS animal_count
+      FROM animal a
+      JOIN person p ON a.ownerId = p.id
+      GROUP BY a.ownerId
+      ORDER BY animal_count DESC
+      LIMIT 1;
+
+
+- **Qui possède le plus de chats ?** Sarah White (Id 268)
+
+      SELECT p.id AS ownerId, p.firstName, p.lastName, COUNT(*) AS cat_count
+      FROM animal a
+      JOIN person p ON a.ownerId = p.id
+      WHERE a.species = 'Cat'
+      GROUP BY p.id
+      ORDER BY cat_count DESC
+      LIMIT 1;
+
+
+- **Qui possède l’animal le plus lourd ? Comment s’appelle cet animal et quel est son poids ?** Emma Smith (Id 209) qui possède Chloe (Id 821) pour un poids de 49,94 kg
+
+      SELECT a.id AS animalId, a.name AS animalName, a.weight AS animalWeight, p.id AS ownerId, p.firstName, p.lastName
+      FROM animal a
+      JOIN person p ON a.ownerId = p.id
+      ORDER BY a.weight DESC
+      LIMIT 1;
+
+- **Qui possède le groupe d’animaux le plus lourd ? Quel est le poids total de ce groupe d’animaux ?** Sophia Brown (18) avec un total de 172 kg.
+
+      p.firstName, p.lastName, a.ownerId, SUM(a.weight) AS total_weight
+      FROM animal a
+      JOIN person p ON a.ownerId = p.id
+      GROUP BY a.ownerId
+      ORDER BY total_weight DESC
+      LIMIT 1;
+
+
+
