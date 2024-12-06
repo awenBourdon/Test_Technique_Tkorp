@@ -1,119 +1,154 @@
 
-  <h1>Nom du Projet</h1>
-  <p>Une brève description de ton projet.</p>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #282c34;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        code {
+            font-size: 1.2em;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .important {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .tech-stack {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guide d'installation et de configuration du projet</h1>
 
-  <hr>
+    <h2>Technologies utilisées</h2>
+    <div class="tech-stack">
+        <ul>
+            <li><strong>TypeScript</strong>: Un sur-ensemble de JavaScript avec typage statique</li>
+            <li><strong>NestJS</strong>: Un framework Node.js progressif pour la construction d'applications côté serveur</li>
+            <li><strong>NextJS</strong>: Un framework React pour le rendu côté serveur</li>
+            <li><strong>MySQL</strong>: Système de gestion de base de données relationnelle</li>
+            <li><strong>GraphQL</strong>: Un langage de requêtes pour les APIs</li>
+            <li><strong>Tailwind CSS</strong>: Un framework CSS utilitaire-first</li>
+            <li><strong>Framer Motion</strong>: Une bibliothèque d'animations pour React</li>
+        </ul>
+    </div>
 
-  <h2>Prérequis</h2>
-  <p>Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :</p>
+    <h2>Installation</h2>
+    <p>Suivez les étapes ci-dessous pour configurer le projet localement.</p>
 
-  <h3>1. Installer Node.js</h3>
-  <p>Ce projet utilise <strong>Node.js</strong>, donc vous devez l'avoir installé. Vous pouvez télécharger la dernière version de Node.js depuis <a href="https://nodejs.org/">le site officiel de Node.js</a>.</p>
+    <h3>1. Installer les dépendances</h3>
+    <p>Assurez-vous d'avoir les outils suivants installés :</p>
+    <ul>
+        <li><strong>Node.js</strong>: Téléchargez-le et installez-le depuis <a href="https://nodejs.org" target="_blank">ici</a>.</li>
+        <li><strong>NestJS CLI</strong>: Installez-le globalement en utilisant la commande suivante :
+            <pre><code>npm install -g @nestjs/cli</code></pre>
+        </li>
+        <li><strong>MySQL</strong>: Installez MySQL si ce n'est pas déjà fait. Vous pouvez le télécharger depuis <a href="https://dev.mysql.com/downloads/installer/" target="_blank">ici</a>.</li>
+    </ul>
 
-  <h4>Installation sur macOS/Linux :</h4>
-  <pre>
-    # Sur macOS ou Linux, vous pouvez utiliser Homebrew (macOS) ou télécharger directement l'installateur
-    # Exemple pour installer via Homebrew sur macOS
-    brew install node
-  </pre>
+    <h3>2. Configurer MySQL</h3>
+    <p>Une fois MySQL installé, ouvrez votre terminal et suivez ces étapes :</p>
 
-  <h4>Installation sur Windows :</h4>
-  <p>Téléchargez et exécutez l'installateur depuis <a href="https://nodejs.org/en/download/">ici</a>.</p>
-  <p>Après l'installation, vérifiez que Node.js et npm sont bien installés en exécutant les commandes suivantes dans votre terminal ou invite de commande :</p>
-  <pre>
-    node -v
-    npm -v
-  </pre>
+    <ol>
+        <li>Créez une base de données appelée <code>technical_test</code> avec la commande suivante :
+            <pre><code>CREATE DATABASE technical_test;</code></pre>
+        </li>
+        <li>Connectez-vous à MySQL :
+            <pre><code>mysql -u root -p</code></pre>
+        </li>
+        <li>Sélectionnez la base de données :
+            <pre><code>USE technical_test;</code></pre>
+        </li>
+        <li>Créez la table <code>person</code> :
+            <pre><code>CREATE TABLE person (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lastName VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phoneNumber VARCHAR(50) NOT NULL
+);</code></pre>
+        </li>
+        <li>Créez la table <code>animal</code> :
+            <pre><code>CREATE TABLE animal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    dateOfBirth DATE NOT NULL,
+    species VARCHAR(255) NOT NULL,
+    breed VARCHAR(255) NOT NULL,
+    color VARCHAR(255) NOT NULL,
+    weight DECIMAL(10, 2) NOT NULL,
+    ownerId INT,
+    FOREIGN KEY (ownerId) REFERENCES person(id) ON DELETE SET NULL
+);</code></pre>
+        </li>
+        <li>Quittez MySQL :
+            <pre><code>EXIT;</code></pre>
+        </li>
+    </ol>
 
-  <h3>2. Installer Nest CLI</h3>
-  <p>NestJS nécessite l'outil en ligne de commande <strong>Nest CLI</strong> pour créer et gérer les projets. Vous pouvez l'installer globalement via npm :</p>
-  <pre>
-    npm install -g @nestjs/cli
-  </pre>
-  <p>Une fois installé, vous pouvez vérifier la version de Nest CLI avec la commande suivante :</p>
-  <pre>
-    nest --version
-  </pre>
+    <h3>3. Configurer les variables d'environnement</h3>
+    <p>Créez un fichier <code>.env</code> à la racine du dossier <strong>backend</strong> et ajoutez les variables suivantes :</p>
+    <pre><code>MYSQL_USERNAME=root
+MYSQL_PASSWORD=root123
+MYSQL_DB_NAME=technical_test
+MYSQL_PORT=3306
+PORT=8000</code></pre>
 
-  <h3>3. Installer MySQL</h3>
-  <p>Ce projet utilise <strong>MySQL</strong> comme base de données. Si vous ne l'avez pas encore, vous pouvez l'installer sur votre machine en suivant les instructions ci-dessous :</p>
+    <h3>4. Lancer le Backend</h3>
+    <p>Une fois MySQL et les variables d'environnement configurées, suivez ces étapes pour lancer le backend :</p>
+    <ol>
+        <li>Allez dans le dossier <strong>backend</strong> :
+            <pre><code>cd backend</code></pre>
+        </li>
+        <li>Installez les dépendances :
+            <pre><code>npm install</code></pre>
+        </li>
+        <li>Démarrez le serveur NestJS avec la commande suivante :
+            <pre><code>nest start --watch</code></pre>
+        </li>
+        <li>Ouvrez votre navigateur et allez sur <code>http://localhost:8000</code> pour vérifier que le serveur fonctionne. Vous devriez voir "Hello Tkorp".</li>
+    </ol>
 
-  <h4>Installation sur macOS/Linux :</h4>
-  <p>Sur macOS, vous pouvez installer MySQL via Homebrew :</p>
-  <pre>
-    brew install mysql
-  </pre>
-  <p>Sur Linux, vous pouvez installer MySQL via le gestionnaire de paquets de votre distribution (par exemple <code>apt</code> pour Ubuntu) :</p>
-  <pre>
-    sudo apt update
-    sudo apt install mysql-server
-  </pre>
+    <h3>5. Lancer le Frontend</h3>
+    <p>Pour lancer le frontend (NextJS), suivez ces étapes :</p>
+    <ol>
+        <li>Allez dans le dossier <strong>frontend</strong> :
+            <pre><code>cd frontend</code></pre>
+        </li>
+        <li>Installez les dépendances :
+            <pre><code>npm install</code></pre>
+        </li>
+        <li>Créez un fichier <code>.env</code> dans le dossier <strong>frontend</strong> avec ce contenu :
+            <pre><code>NEXT_PUBLIC_GRAPHQL_URI=http://localhost:8000/graphql</code></pre>
+        </li>
+        <li>Démarrez le serveur de développement NextJS :
+            <pre><code>npm run dev</code></pre>
+        </li>
+        <li>Allez sur <code>http://localhost:3000</code> pour voir le frontend en action.</li>
+    </ol>
 
-  <h4>Installation sur Windows :</h4>
-  <ol>
-    <li>Téléchargez et installez MySQL depuis <a href="https://dev.mysql.com/downloads/installer/">le site officiel de MySQL</a>.</li>
-    <li>Suivez les instructions de l'installateur, en prenant soin de noter votre mot de passe root.</li>
-    <li>Après l'installation, vous pouvez démarrer MySQL via l'invite de commande :</li>
-    <pre>
-      mysql -u root -p
-    </pre>
-    <li>Créez une base de données pour le projet :</li>
-    <pre>
-      CREATE DATABASE technical_test;
-    </pre>
-  </ol>
+    <h3>Important</h3>
+    <p><span class="important">Par défaut, NextJS utilise le port 3000. Si vous changez ce port dans l'application <code>frontend</code>, n'oubliez pas de mettre à jour l'URL dans <code>main.ts</code> dans la configuration du backend.</span></p>
 
-  <hr>
+    <h2>Conclusion</h2>
+    <p>Voilà ! Votre application devrait maintenant être en fonctionnement avec un backend NestJS, une base de données MySQL et un frontend NextJS. Vous pouvez commencer à travailler sur votre projet ou personnaliser celui-ci selon vos besoins.</p>
 
-  <h2>Installation du projet</h2>
-  <p>Suivez les étapes ci-dessous pour installer et configurer le projet sur votre machine.</p>
-
-  <h3>1. Clonez ce dépôt</h3>
-  <pre>
-    git clone https://github.com/votre-utilisateur/votre-repository.git
-  </pre>
-
-  <h3>2. Installez les dépendances</h3>
-  <p>Naviguez dans le répertoire du projet cloné et installez les dépendances :</p>
-  <pre>
-    cd votre-repository
-    npm install
-  </pre>
-
-  <h3>3. Configurez les variables d'environnement</h3>
-  <p>Créez un fichier <code>.env</code> à la racine de votre projet et ajoutez-y les variables suivantes pour configurer votre base de données :</p>
-  <pre>
-    MYSQL_USERNAME=root
-    MYSQL_PASSWORD=root123
-    MYSQL_DATABASE=technical_test
-    MYSQL_HOST=localhost
-    MYSQL_PORT=3306
-    NEXT_PUBLIC_GRAPHQL_URI=http://localhost:8000/graphql
-  </pre>
-  <p><strong>Note : </strong>Vous pouvez modifier ces valeurs en fonction de votre configuration locale.</p>
-
-  <h3>4. Lancer le serveur backend (NestJS)</h3>
-  <p>Dans le répertoire du backend, lancez le serveur NestJS avec la commande suivante :</p>
-  <pre>
-    npm run start:dev
-  </pre>
-  <p>Cela démarre le serveur backend en mode développement, généralement accessible à l'adresse <code>http://localhost:3000</code>.</p>
-
-  <h3>5. Lancer le serveur frontend (Next.js)</h3>
-  <p>Dans le répertoire du frontend, lancez le serveur Next.js avec la commande suivante :</p>
-  <pre>
-    npm run dev
-  </pre>
-  <p>Cela démarre le serveur frontend en mode développement, généralement accessible à l'adresse <code>http://localhost:3000</code> ou <code>http://localhost:8000</code> selon la configuration.</p>
-
-  <hr>
-
-  <h2>Utilisation</h2>
-  <p>Une fois les serveurs backend et frontend démarrés, vous pouvez commencer à interagir avec l'application via l'interface frontend (Next.js) ou effectuer des requêtes GraphQL via l'endpoint <code>/graphql</code> du serveur backend (NestJS).</p>
-
-  <hr>
-
-  <h2>Conclusion</h2>
-  <p>Vous avez maintenant installé et configuré le projet avec Node.js, NestJS, MySQL et Next.js. Vous pouvez commencer à développer et personnaliser l'application en fonction de vos besoins.</p>
-
-  <p><strong>Note :</strong> N'hésite pas à me faire savoir si tu as des questions ou si quelque chose ne fonctionne pas comme prévu.</p>
