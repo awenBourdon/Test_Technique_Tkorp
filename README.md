@@ -27,10 +27,11 @@
 
 1. **Node.js** : Téléchargez et installez Node.js depuis [ici](https://nodejs.org).
 2. **NestJS CLI** : Installez-le avec la commande suivante :
+   
    ```bash
    npm install -g @nestjs/cli
 
-3.   MySQL : Installez et configurez MySQL sur votre machine. Vous pouvez le télécharger depuis [ici](https://dev.mysql.com/downloads/installer/).
+4.   MySQL : Installez et configurez MySQL sur votre machine. Vous pouvez le télécharger depuis [ici](https://dev.mysql.com/downloads/installer/).
 
 Étapes pour configurer le projet
 
