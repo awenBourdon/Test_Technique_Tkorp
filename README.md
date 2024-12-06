@@ -1,120 +1,100 @@
-# 😱 Test technique NextJS/NestJS 🚀
 
-Bienvenue dans ce test technique !
+<h1 align="center" style="font-weight: bold;">Project name 💻</h1>
 
-L’objectif est de nous assurer que tu as les bonnes bases pour nous rejoindre et t’épanouir chez TKorp.
+<p align="center">
+<a href="#tech">Technologies</a>
+<a href="#started">Getting Started</a>
+<a href="#routes">API Endpoints</a>
+<a href="#colab">Collaborators</a>
+<a href="#contribute">Contribute</a> 
+</p>
 
-## Compétences testées
 
-- Comprendre et appliquer une documentation technique
-- Utiliser NestJS pour mettre en place une API simple
-- Utiliser NextJS pour recevoir et afficher les données récupérées depuis l’API
-- Formater et styliser des pages et les données qu’elles affichent
-- Réaliser un développement propre et rigoureux
+<p align="center">Simple description of what your project do or how to use it</p>
 
-## Déroulé du test
 
-Tu as __une semaine__ pour effectuer ce test et nous envoyer les résultats + ton code sur un __repository GitHub__, avec les __instructions d’installation/utilisation__ dans un __README__.
+<p align="center">
+<a href="https://github.com/ShaanCoding">📱 Visit this Project</a>
+</p>
 
-En cas de blocage, tu peux me demander de l’aide par email
+<h2 id="technologies">💻 Technologies</h2>
 
-A la réception de ton développement, nous débrieferons en entretien technique (ça sera aussi l’occasion de nous montrer tes projets persos si tu en as)
+- list of all technologies you used
+- react
+- styled components
+- another example
 
-## Objectifs
+<h2 id="started">🚀 Getting started</h2>
 
-Le test a pour objectif de montrer tes compétences techniques (évidemment), mais surtout ta capacité de raisonnement et ta rigueur.
+Here you describe how to run your project locally
 
-Le test n’a pas pour objectif de mettre en évidence tes éventuelles lacunes ! Si tu n’as pas “tout bon”, ce n’est pas grave !
+<h3>Prerequisites</h3>
 
-## Critères de réussite
+Here you list all prerequisites necessary for running your project. For example:
 
-- Le code est propre, lisible, bien structuré, sans faute d’orthographe, indenté
-- Pas de code inutilisé
-- Le code est factorisé, si c’est nécessaire
-- Le code est commenté si c’est nécessaire
-- Les requêtes fonctionnent
-- Les requêtes renvoient une erreur lisible si nécessaire
-- L’interface utilisateur est jolie, soignée
-- Les pages fonctionnent et affichent les bonnes données
----
+- [NodeJS](https://github.com/)
+- [Git 2](https://github.com)
 
-&nbsp;
+<h3>Cloning</h3>
 
-# ☠️ Le test ☠️
+How to clone your project
 
-Le but de ce test est de :
-
-- Partie 1 : créer une API NestJS permettant d'obtenir des informations sur des animaux de compagnie et leurs propriétaires
-- Partie 2 : Afficher ces informations dans une application NextJS
-
-Les deux parties sont complémentaires mais chacune peut exister sans l’autre (tu peux quand même faire la partie 2 même si tu es bloqué sur la partie 1, et inversement).
-Évidemment, tu peux commencer par la partie que tu veux.
-
-## Partie 1 : Créer une API NestJS
-
-### Liens utiles
-
-- https://nestjs.com
-
-### Voici les tâches à effectuer pour cette partie
-
-- Mettre en place la base de données __MySQL__
-
-#### Table “person”
-
-```typescript
-lastName: string;
-firstName: string;
-email: string;
-phoneNumber: string;
+```bash
+git clone your-project-url-in-github
 ```
 
-#### Table “animal”
-```typescript
-name: string;
-dateOfBirth: Date;
-species: string;
-breed: string;
-color: string;
-weight: number;
+<h3>Config .env variables</h2>
+
+Use the `.env.example` as reference to create your configuration file `.env` with your AWS Credentials
+
+```yaml
+NODE_AWS_REGION=us-east-1
+NODE_AWS_KEY_ID={YOUR_AWS_KEY_ID}
+NODE_AWS_SECRET={YOUR_AWS_SECRET}
 ```
 
-- Mettre en place la relation entre les personnes et les animaux : Un animal ne peut avoir qu’un seul maître, un maître peut avoir plusieurs animaux
+<h3>Starting</h3>
 
-- Insérer les données dans la base de données (code SQL fourni)
-- Mettre en place et configurer l’environnement NestJS, la connexion avec la base de données
-- Écrire le CRUD pour les propriétaires
-- Écrire le CRUD pour les animaux
-- Répondre aux questions suivantes (Plusieurs réponses possibles) :
-  - Quel animal est le plus vieux ?
-  - Quelle espèce est la mieux représentée ? (Le plus d’entités de cette espèce)
-  - Qui possède le plus d’animaux ?
-  - Qui possède le plus de chats ?
-  - Qui possède l’animal le plus lourd ? Comment s’appelle cet animal et quel est son poids ?
-  - Qui possède le groupe d’animaux le plus lourd ? Quel est le poids total de ce groupe d’animaux ?
+How to start your project
 
-## Partie 2 : Afficher des informations dans une application NextJS
+```bash
+cd project-name
+npm some-command-to-run
+```
 
-### Liens utiles
+<h2 id="routes">📍 API Endpoints</h2>
 
-https://nextjs.org/
+Here you can list the main routes of your API, and what are their expected request bodies.
+​
+| route               | description                                          
+|----------------------|-----------------------------------------------------
+| <kbd>GET /authenticate</kbd>     | retrieves user info see [response details](#get-auth-detail)
+| <kbd>POST /authenticate</kbd>     | authenticate user into the api see [request details](#post-auth-detail)
 
-### Voici les tâches à effectuer pour cette partie :
-- Mettre en place et configurer l’environnement NextJS
-  - Si la partie 1 est réussie, la connexion avec le backend NestJS
-  - Ou sinon, utiliser les données fournies (fichier .json)
-- Récupérer toutes les personnes sur une page
+<h3 id="get-auth-detail">GET /authenticate</h3>
 
-- Récupérer tous les animaux sur une page
-- Au clic sur une personne ou un animal, afficher une page avec les informations détaillées sur cette personne/cet animal
-- Une barre de navigation permet de revenir à la page d’accueil
+**RESPONSE**
+```json
+{
+  "name": "Fernanda Kipper",
+  "age": 20,
+  "email": "her-email@gmail.com"
+}
+```
 
-## Bonus
+<h3 id="post-auth-detail">POST /authenticate</h3>
 
-- Utiliser GraphQL comme langage de requête
-- Paginer les résultats personnes / animaux
+**REQUEST**
+```json
+{
+  "username": "fernandakipper",
+  "password": "4444444"
+}
+```
 
-## Informations complémentaires
-❗ Le poids de chaque animal est en grammes.
-
-❗ Les données ont été générées par IA donc certaines sont incohérentes, ne t'étonnes pas si tu as dans la base un hamster qui pèse 23kg par exemple 😱
+**RESPONSE**
+```json
+{
+  "token": "OwoMRHsaQwyAgVoc3OXmL1JhMVUYXGGBbCTK0GBgiYitwQwjf0gVoBmkbuyy0pSi"
+}
+```
