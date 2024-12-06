@@ -80,7 +80,7 @@ Pour vérifier sur MySQL si les données ont bien été rentrée :
      SELECT * FROM person;
      SELECT * FROM animal;
 
-### Paramétrage des variables d'environnement
+## Paramétrage des variables d'environnement
 
 Dans le dossier backend, créez un fichier .env et ajoutez les informations suivantes :
 
@@ -90,7 +90,7 @@ Dans le dossier backend, créez un fichier .env et ajoutez les informations suiv
     MYSQL_PORT= (le port de votre base de donnée)
     PORT= (le port que vous souhaitez utiliser pour NestJS/GraphQL)
 
-Démarrer le Backend (NestJS)
+Démarrer le Backend
 
 Allez dans le dossier backend :
 
@@ -106,7 +106,7 @@ Démarrez l'application NestJS :
 
 Ouvrez votre navigateur et accédez à http://localhost:(le PORT que vous avez défini). Vous devriez voir le message "Hello Tkorp".
 
-Démarrer le Frontend (NextJS)
+## Démarrer le Frontend (NextJS)
 
 Allez dans le dossier frontend :
 
