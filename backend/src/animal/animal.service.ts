@@ -1,5 +1,6 @@
 /* 
-Implements the  logic for managing animals
+"Implements the logic for managing animal data, 
+including retrieval and association with person."
 */
 
 import { Injectable, NotFoundException } from '@nestjs/common';
