@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Error404 = () => {
   return (
-    <div className="min-h-[75vh] flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-6xl font-bold mb-12 tracking-tighter">Erreur 404. Page non trouvée.</h1>
       <p className="text-2xl font-semibold mb-12 tracking-tighter"> La page que vous recherchez n&apos;existe pas.</p>
       <Link href={"/"} 

@@ -6,7 +6,7 @@ const HomePage = () => {
  
 
   return (
-    <div className="min-h-[75vh] flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8">
       <div className="w-full max-w-4xl border-4 border-black p-8">
         <h1
           className="text-5xl sm:text-6xl font-bold mb-12 tracking-tighter transition-opacity duration-500"

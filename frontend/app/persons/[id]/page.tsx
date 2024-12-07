@@ -32,9 +32,9 @@ const Person = () => {
     notFound();
   }
 
-  // Filter to get the animal(s) the person owned 
+  // Filter to get the animal(s) person owned 
   const animalsOwned = animalsData?.animals.filter(
-    (animal) => animal.ownerId === Number(personId)
+    (animal: { ownerId: number; }) => animal.ownerId === Number(personId)
   );
 
   return (
