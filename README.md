@@ -33,7 +33,7 @@
 
 4.   MySQL : Installez et configurez MySQL sur votre machine. Vous pouvez le télécharger depuis [ici](https://dev.mysql.com/downloads/installer/).
 
-Étapes pour configurer le projet
+### Étapes pour configurer le projet
 
 Clonez ce repository sur votre machine :
 
