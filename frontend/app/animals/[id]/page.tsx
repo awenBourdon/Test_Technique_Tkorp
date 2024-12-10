@@ -1,7 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@apollo/client';
-import { notFound } from 'next/navigation';
 import { GET_ANIMAL_BY_ID } from '@/app/graphql/AnimalQueries';
 import LoadingMessage from '@/app/components/LoadingMessage';
 import ErrorMessage from '@/app/components/ErrorMessage';
@@ -25,11 +24,7 @@ const Animal = () => {
     <ErrorMessage message={error.message} />
   );
 
-  // Avoid Nextjs error page
   const animal = data?.animal;
-  if (!animal) {
-    notFound();
-  }
 
   return (
     <div className="min-h-screen p-8 ">

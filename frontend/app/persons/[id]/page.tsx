@@ -1,7 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@apollo/client';
-import { notFound } from 'next/navigation';
 import { GET_PERSON_BY_ID } from '@/app/graphql/PersonQueries';
 import { GET_ANIMALS } from '@/app/graphql/AnimalQueries';
 import LoadingMessage from '@/app/components/LoadingMessage';
@@ -26,11 +25,7 @@ const Person = () => {
   if (personError) return <ErrorMessage message={personError.message} />;
   if (animalsError) return <ErrorMessage message={animalsError.message} />;
 
-  // Avoid Nextjs error page
   const person = personData?.person;
-  if (!person) {
-    notFound();
-  }
 
   // Filter to get the animal(s) person owned 
   const animalsOwned = animalsData?.animals.filter(
