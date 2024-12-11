@@ -43,6 +43,23 @@
       }
     }
 
+## Update a specific person by id :   
+
+mutation {
+  updatePerson(id: 1, updatePersonInput: {
+    lastName: "John"
+    firstName: "Doe updated"
+    email: "john@doe.com"
+    phoneNumber: "555-555-1234"
+  }) {
+    id
+    lastName
+    firstName
+    email
+    phoneNumber
+  }
+}
+
 ## Delete a person by id : 
 
     mutation {
@@ -109,6 +126,34 @@
         }
       }
     }
+
+## Update a specific animal by id :
+
+mutation {
+  updateAnimal(id: 1, updateAnimalInput: {
+    name: "hello"
+    color: "hello"
+    species: "hello"
+    breed: "hello"
+    weight: 60
+    ownerId: 55
+    dateOfBirth: "2021/01/01"
+  }) {
+    id
+    name
+    color
+    species
+    breed
+    weight
+    owner {
+      id
+      lastName
+      firstName
+    }
+    dateOfBirth
+  }
+}
+
 
 ## Delete a animal by id : 
 

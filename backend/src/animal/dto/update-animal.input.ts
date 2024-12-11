@@ -5,7 +5,6 @@ in GraphQL
 
 import { InputType, Field, Int, Float, PartialType } from '@nestjs/graphql';
 import { CreateAnimalInput } from './create-animal.input';
-import { IsOptional } from '@nestjs/class-validator';
 
 @InputType()
 export class UpdateAnimalInput extends PartialType(CreateAnimalInput) {
