@@ -7,6 +7,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { PersonModule } from './person/person.module';
 import { AnimalModule } from './animal/animal.module';
 import { ConfigModule } from '@nestjs/config';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 
 @Module({
   imports: [
@@ -28,10 +29,11 @@ import { ConfigModule } from '@nestjs/config';
       logging: true,
     }),
 
-    //Configures Apollo server to use GraphQL 
+    //Configures Apollo server to use GraphQL
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: true,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
       autoSchemaFile: true,
     }),
     PersonModule,

@@ -7,6 +7,7 @@ import LoadingMessage from '../components/LoadingMessage';
 import ErrorMessage from '../components/ErrorMessage';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Animal } from '../types/Animal';
 
 const AllAnimals = () => {
 
@@ -27,7 +28,7 @@ const AllAnimals = () => {
   const itemsPerPage = 16;
 
   // Returns a slice of the items array for the current page 
-  const paginate = (items: any[]) => {
+  const paginate = (items: Animal[]) => {
     const firstItemOfThePage = (currentPage - 1) * itemsPerPage;
     const lastItemOfThePage = firstItemOfThePage + itemsPerPage;
     return items.slice(firstItemOfThePage, lastItemOfThePage);

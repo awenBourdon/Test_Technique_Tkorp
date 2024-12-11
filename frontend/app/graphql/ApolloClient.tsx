@@ -7,7 +7,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// Allows the app to use GraphQL request
+// Allows the app to use GraphQL
 export function ApolloWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ApolloProvider client={client}>

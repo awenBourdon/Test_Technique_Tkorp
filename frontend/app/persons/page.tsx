@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Pagination from '../components/Pagination';
 import LoadingMessage from '../components/LoadingMessage';
 import ErrorMessage from '../components/ErrorMessage';
+import { Person } from '../types/Person';
 
 const AllPersons = () => {
 
@@ -27,7 +28,7 @@ const AllPersons = () => {
   const itemsPerPage = 16;
 
   // Returns a slice of the items array for the current page 
-  const paginate = (items: any[]) => {
+  const paginate = (items: Person[]) => {
     const firstItemOfThePage = (currentPage - 1) * itemsPerPage;
     const lastItemOfThePage = firstItemOfThePage + itemsPerPage;
     return items.slice(firstItemOfThePage, lastItemOfThePage);

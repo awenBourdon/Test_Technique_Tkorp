@@ -3,6 +3,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@apollo/client';
 import { GET_PERSON_BY_ID } from '@/app/graphql/PersonQueries';
 import { GET_ANIMALS } from '@/app/graphql/AnimalQueries';
+import { Animal } from '../../types/Animal';
 import LoadingMessage from '@/app/components/LoadingMessage';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Link from 'next/link';
@@ -32,6 +33,7 @@ const Person = () => {
     (animal: { ownerId: number; }) => animal.ownerId === Number(personId)
   );
 
+
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
@@ -56,7 +58,7 @@ const Person = () => {
             {animalsOwned && animalsOwned.length > 0 ? (
               <p className="text-xl">
                 <span className="font-bold">Animaux :</span>{' '}
-                {animalsOwned.map((animal) => (
+                {animalsOwned.map((animal: Animal) => (
                   <Link
                     key={animal.id}
                     href={`/animals/${animal.id}`}
